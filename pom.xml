@@ -5,16 +5,23 @@
 	<artifactId>maven-compiler-warnings-bug</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
+	<properties>
+		<plugin.compiler.version>3.1</plugin.compiler.version>
+	</properties>
+
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${plugin.compiler.version}</version>
 				<executions>
 					<execution>
 						<id>default-compile</id>
 						<phase>compile</phase>
 						<configuration>
+							<source>1.7</source>
+							<target>1.7</target>
 							<compilerArgs>
 								<arg>-Xlint:none</arg>
 							</compilerArgs>
@@ -25,17 +32,12 @@
 							<goal>compile</goal>
 						</goals>
 					</execution>
-				</executions>
-			</plugin>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<executions>
 					<execution>
 						<id>compile-full-warnings</id>
 						<phase>compile</phase>
 						<configuration>
+							<source>1.7</source>
+							<target>1.7</target>
 							<compilerArgs>
 								<arg>-Xlint:all</arg>
 							</compilerArgs>
