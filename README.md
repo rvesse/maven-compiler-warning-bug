@@ -25,14 +25,20 @@ Then it produces this output:
 
 Here we can see that these are notes.  However the maven compiler plugin appears to interpret this as a `WARNING` which is irritating to say the least especially if we've set the `<showWarnings>` configuration for the plugin to false (which also is the default behaviour).
 
+This is also discussed in [MCOMPILE-224](http://jira.codehaus.org/browse/MCOMPILER-224) though not as clearly as here hence why this repository exists.
+
 ### Incorrect behaviour is version dependent
 
-To complicate things the behaviour around compiler notes is inconsistent between versions.  The project uses `3.1` as the default plugin version (which is the default my local Maven installation gives me if I don't specify a version) which does show a warning.
+To complicate things the behaviour around compiler notes is inconsistent between versions.  The project uses `3.1` as the default plugin version (which was the default my local Maven installation gave me if I didn't specify a version) which does show a warning.
 
-However with `3.2` the extra warnings become informational messages instead e.g.
+However with `3.2` the extra warnings become informational messages instead which is much more appropriate behaviour e.g.
 
     > mvn clean compile -Dplugin.compiler.version=3.2
 
 If you go back further and use `2.5.1` then compiler output doesn't appear to get properly handled at all since we see no warnings even in the full warnings case:
 
     > mvn clean compile -Dplugin.compiler.version=2.5.1
+
+## How to fix?
+
+Simply use the latest version of the compiler plugin (`3.2` at time of writing) explicitly in your POMs
